@@ -1,3 +1,4 @@
+from alarm import delete_alarm, set_alarm, stop_alarms, view_alarms
 from countdown import delete_countdown, set_countdown, stop_countdowns, view_countdowns
 
 
@@ -22,7 +23,13 @@ def alarm_menu():
             "3": "Delete Alarm",
             "4": "Back to Main Menu",
         })
-        if choice == "4":
+        if choice == "1":
+            set_alarm()
+        elif choice == "2":
+            view_alarms()
+        elif choice == "3":
+            delete_alarm()
+        elif choice == "4":
             return
 
 
@@ -57,6 +64,7 @@ def main_menu():
         elif choice == "2":
             countdown_menu()
         elif choice == "3":
+            stop_alarms()
             stop_countdowns()
             print("Goodbye!")
             return
@@ -66,5 +74,6 @@ if __name__ == "__main__":
     try:
         main_menu()
     except (KeyboardInterrupt, EOFError):
+        stop_alarms()
         stop_countdowns()
         print("\nAlarm clock stopped.")
