@@ -2,6 +2,8 @@ import math
 import threading
 from datetime import datetime, timedelta
 
+from notify import announce
+
 _lock = threading.Lock()
 _alarms = {}
 _next_id = 1
@@ -46,7 +48,8 @@ def _run(alarm_id, label, target, cancel):
             return
         del _alarms[alarm_id]
 
-    print(f"\n\aAlarm: {label}", flush=True)
+    when = target.strftime("%H:%M")
+    announce(f"🔔 Alarm — {label} at {when}", "Ping")
 
 
 def _schedule(target, label):

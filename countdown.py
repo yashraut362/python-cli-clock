@@ -2,6 +2,8 @@ import math
 import threading
 import time
 
+from notify import announce
+
 _lock = threading.Lock()
 _countdowns = {}
 _next_id = 1
@@ -27,7 +29,7 @@ def _run(countdown_id, label, seconds, cancel):
             return
         del _countdowns[countdown_id]
 
-    print(f"\n\aCountdown finished: {label}", flush=True)
+    announce(f"⏰ Countdown finished — {label}", "Glass")
 
 
 def start_countdown(seconds, label="Countdown"):
