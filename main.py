@@ -1,3 +1,6 @@
+from countdown import delete_countdown, set_countdown, stop_countdowns, view_countdowns
+
+
 def menu(title, options):
     while True:
         print(f"\n===== {title} =====")
@@ -31,7 +34,13 @@ def countdown_menu():
             "3": "Delete Countdown",
             "4": "Back to Main Menu",
         })
-        if choice == "4":
+        if choice == "1":
+            set_countdown()
+        elif choice == "2":
+            view_countdowns()
+        elif choice == "3":
+            delete_countdown()
+        elif choice == "4":
             return
 
 
@@ -48,6 +57,7 @@ def main_menu():
         elif choice == "2":
             countdown_menu()
         elif choice == "3":
+            stop_countdowns()
             print("Goodbye!")
             return
 
@@ -56,4 +66,5 @@ if __name__ == "__main__":
     try:
         main_menu()
     except (KeyboardInterrupt, EOFError):
+        stop_countdowns()
         print("\nAlarm clock stopped.")
